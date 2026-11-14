@@ -6,6 +6,7 @@ angular.module('temperoApp', [
 
 // Controller da pagina
 angular.module('temperoApp')
-  .controller('CardapioController', function ($scope) {
-    $scope.nomeCliente = '';
-  });
+  .controller('CardapioController', function ($scope, CardapioService) {
+    $scope.pratos = CardapioService.listar();
+
+});

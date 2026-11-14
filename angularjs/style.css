@@ -67,3 +67,59 @@ input, select {
   text-align: center;
   font-size: 0.9rem;
 }
+
+/* cardapio */
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.prato {
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.prato h3 { margin: 8px 0 6px; font-size: 1.05rem; }
+
+.prato__desc {
+  margin: 0 0 12px;
+  color: var(--fraco);
+  font-size: 0.9rem;
+}
+
+.prato__preco {
+  margin: 0;
+  color: var(--laranja);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.etiqueta {
+  display: inline-block;
+  background: var(--borda);
+  color: var(--fraco);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.info {
+  margin: 16px 0 0;
+  color: var(--fraco);
+  font-size: 0.85rem;
+}
+
+/* Tablet 2 colunas */
+@media (min-width: 600px) {
+  .grade { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Desktop: 3 colunas */
+@media (min-width: 900px) {
+  .grade { grid-template-columns: repeat(3, 1fr); }
+}

@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="temperoApp">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tempero da Bahia</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempero da Bahia</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header class="cabecalho">
-    <div class="container">
-      <h1>Tempero <span>da Bahia</span></h1>
-      <p>Comida baiana na sua porta</p>
-    </div>
-  </header>
+    <header class="cabecalho">
+        <div class="container">
+            <h1>Tempero <span>da Bahia</span></h1>
+            <p>Comida baiana na sua porta</p>
+        </div>
+    </header>
 
-  <main class="container" ng-controller="CardapioController">
+    <main class="container" ng-controller="CardapioController">
 
-    <section class="secao">
-      <h2>Teste</h2>
-      <label for="nome">Seu nome</label>
-      <input type="text" id="nome" ng-model="nomeCliente" placeholder="digite aqui">
-      <p class="destaque">Olá, {{ nomeCliente || 'visitante' }}!</p>
-    </section>
+        <section class="secao">
+            <h2>Cardápio</h2>
 
-  </main>
+            <div class="grade">
+                <article class="prato" ng-repeat="prato in pratos">
+                    <span class="etiqueta">{{ prato.categoria }}</span>
+                    <h3>{{ prato.nome }}</h3>
+                    <p class="prato__desc">{{ prato.descricao }}</p>
+                    <p class="prato__preco">{{ prato.preco | real }}</p>
+                </article>
+            </div>
 
-  <footer class="rodape">
-    <div class="container">
-      <p>Atividade de AngularJS · Vinicius Lago Cruz</p>
-    </div>
-  </footer>
+            <p class="info">{{ pratos.length }} itens no cardápio</p>
+        </section>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
-  <script src="js/dados.js"></script>
-  <script src="js/componentes.js"></script>
-  <script src="js/app.js"></script>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>Atividade de AngularJS · Vinicius Lago Cruz</p>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="js/dados.js"></script>
+    <script src="js/componentes.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
 </html>
