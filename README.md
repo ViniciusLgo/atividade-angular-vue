@@ -1,8 +1,8 @@
 # Tempero da Bahia
 
-Atividade de AngularJS da disciplina Tópicos Avançados em Programação (Prof. Elton Figueiredo da Silva) — UCSAL.
+Atividade de AngularJS e Vue.js da disciplina Tópicos Avançados em Programação (Prof. Elton Figueiredo da Silva) — UCSAL.
 
-Site de um delivery fictício de comida baiana, feito com AngularJS 1.8.3 e CSS próprio, desenvolvido no GitHub Codespaces.
+Site de um delivery fictício de comida baiana, feito duas vezes: uma em **AngularJS** (a atividade principal) e outra em **Vue.js** (o desafio extra). As duas versões têm os mesmos seis componentes, o mesmo conteúdo e o mesmo CSS, pra dar pra comparar como cada framework resolve a mesma coisa.
 
 Aluno: Vinicius Lago Cruz
 
@@ -19,9 +19,18 @@ Aluno: Vinicius Lago Cruz
 
 ## Como rodar
 
+### Versão AngularJS
+
 1. Abrir o repositório no Codespaces.
 2. No terminal: `python3 -m http.server 8000`
 3. Na aba Portas, abrir a porta 8000 e acessar `/angularjs/`.
+
+### Versão Vue
+
+1. No terminal: `cd vue`
+2. `npm install` (só na primeira vez)
+3. `npm run dev`
+4. Abrir a porta 5173 na aba Portas.
 
 ## Arquivos
 
@@ -47,23 +56,53 @@ angularjs/
         |-- barra-progresso.js
         |-- toasts.js
         `-- acordeao.js
+
+vue/
+|-- index.html
+|-- package.json
+|-- vite.config.js
+`-- src/
+    |-- main.js                     cria a aplicacao
+    |-- App.vue                     componente principal
+    |-- style.css                   o mesmo CSS da versao AngularJS
+    |-- dados/
+    |   |-- cardapio.js
+    |   |-- faq.js
+    |   |-- real.js
+    |   `-- toast.js                avisos, com reactive()
+    `-- componentes/                um arquivo .vue por componente
+        |-- MenuSuspenso.vue
+        |-- Paginacao.vue
+        |-- Abas.vue
+        |-- BarraProgresso.vue
+        |-- Toasts.vue
+        `-- Acordeao.vue
 ```
 
-## Módulos
+## O mesmo componente nos dois frameworks
 
-- `temperoApp.dados` — CardapioService, ToastService, FaqService e o filtro `real`
-- `temperoApp.componentes` — as 6 diretivas
-- `temperoApp` — módulo principal, que junta os outros dois
+| Conceito | AngularJS | Vue |
+|---|---|---|
+| Componente | diretiva com escopo isolado | arquivo `.vue` |
+| Recebe dados | bindings `=`, `@`, `<` | `props` |
+| Devolve dados | binding `&` (callback) | `$emit` |
+| Estado interno | `$scope` | `data()` |
+| Valor calculado | função no `$scope` | `computed` |
+| Dois sentidos | `ng-model` | `v-model` |
+| Repetir lista | `ng-repeat` | `v-for` |
+| Mostrar/esconder | `ng-if` e `ng-show` | `v-if` e `v-show` |
+| Clique | `ng-click` | `@click` |
+| Reagir a mudança | `$watch` | `watch` |
+| Entrar/sair da tela | `link` e `$destroy` | `mounted` e `beforeUnmount` |
+| Estado compartilhado | serviço (`factory`) | arquivo com `reactive()` |
+| Formatar valor | filtro (`\| real`) | função importada (Vue 3 tirou os filtros) |
 
 ## O que foi usado
 
-- diretivas com escopo isolado e bindings `=`, `@`, `&` e `<`
-- `$scope` e `ng-model` pra ligar os dados à tela
-- factories pra guardar os dados e a lógica
-- filtro próprio pra formatar o preço em real
-- `ng-click`, `ng-repeat`, `ng-if`, `ng-show`, `ng-class` e `ng-style`
-- `$timeout`, `$document` e `$watch`
+**AngularJS:** três módulos com `app.js` orquestrando, controlador com `$scope`, diretivas com escopo isolado e bindings `=`, `@`, `&` e `<`, três factories, filtro próprio, `ng-model`, `ng-change`, `ng-click`, `ng-repeat`, `ng-if`, `ng-show`, `ng-class`, `ng-style`, `$timeout`, `$document` e `$watch`.
+
+**Vue:** componentes `.vue` com `App.vue` orquestrando, `props` e `$emit`, `data` e `computed`, `v-model`, `v-for`, `v-if`, `v-show`, `:class`, `:style`, `watch`, lifecycle hooks `mounted` e `beforeUnmount`, e um estado compartilhado com `reactive()`.
 
 ## Responsividade
 
-Feita com CSS Grid, Flexbox e media queries em 600px e 900px. O cardápio fica com 1 coluna no celular, 2 no tablet e 3 no computador.
+Feita com CSS Grid, Flexbox e media queries em 600px e 900px. O cardápio fica com 1 coluna no celular, 2 no tablet e 3 no computador. As duas versões usam o mesmo arquivo de estilo.
