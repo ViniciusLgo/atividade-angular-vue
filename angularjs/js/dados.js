@@ -38,3 +38,4 @@ dados.filter('real', function () {
     return 'R$ ' + valor.toFixed(2).replace('.', ',');
   };
 });
+

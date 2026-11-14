@@ -117,3 +117,79 @@ componentes.directive('menuSuspenso', function ($document) {
     }
   };
 });
+
+componentes.directive('abas', function () {
+  return {
+    restrict: 'E',
+
+    scope: {
+      itens: '='   // lista de abas
+    },
+
+    template: `
+      <div class="abas">
+        <div class="abas__titulos" role="tablist">
+          <button type="button"
+                  ng-repeat="item in itens"
+                  ng-click="selecionar($index)"
+                  ng-class="{ 'ativa': $index === ativa }"
+                  role="tab"
+                  aria-selected="{{ $index === ativa }}">
+            {{ item.titulo }}
+          </button>
+        </div>
+
+        <div class="abas__painel" role="tabpanel">
+          {{ itens[ativa].conteudo }}
+        </div>
+      </div>
+    `,
+
+    link: function (scope) {
+
+      // Começa na primeira aba.
+      scope.ativa = 0;
+
+      scope.selecionar = function (indice) {
+        scope.ativa = indice;
+      };
+
+      // Se a lista trocar (outro prato), volta pra primeira aba.
+      scope.$watch('itens', function () {
+        scope.ativa = 0;
+      });
+
+    }
+  };
+});
+
+
+componentes.directive('barraProgresso', function () {
+  return {
+    restrict: 'E',
+
+    scope: {
+      valor: '<',     // número de 0 a 100 (só entra)
+      rotulo: '@'     // texto fixo
+    },
+
+    template: `
+      <div class="barra">
+        <div class="barra__topo">
+          <span>{{ rotulo }}</span>
+          <strong>{{ valor }}%</strong>
+        </div>
+
+        <div class="barra__trilho"
+             role="progressbar"
+             aria-valuenow="{{ valor }}"
+             aria-valuemin="0"
+             aria-valuemax="100">
+          <div class="barra__preenchimento"
+               ng-style="{ width: valor + '%' }"
+               ng-class="{ 'completa': valor >= 100 }"></div>
+        </div>
+      </div>
+    `
+  };
+});

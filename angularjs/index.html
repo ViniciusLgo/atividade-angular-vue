@@ -34,16 +34,70 @@
                     <h3>{{ prato.nome }}</h3>
                     <p class="prato__desc">{{ prato.descricao }}</p>
                     <p class="prato__preco">{{ prato.preco | real }}</p>
+                    <div class="prato__botoes">
+                        <button type="button" class="botao-link" ng-click="verDetalhes(prato)">
+                            Ver detalhes
+                        </button>
+                        <button type="button" class="botao-cheio" ng-click="adicionar(prato)">
+                            + Adicionar
+                        </button>
+                    </div>
                 </article>
+
             </div>
 
-            <paginacao total-paginas="totalPaginas" pagina-atual="paginaAtual" ao-mudar="irParaPagina(pagina)">
-            </paginacao>
+        <paginacao total-paginas="totalPaginas" pagina-atual="paginaAtual" ao-mudar="irParaPagina(pagina)">
+        </paginacao>
 
-            <p class="info">Página {{ paginaAtual }} de {{ totalPaginas }}</p>
+        <p class="info">Página {{ paginaAtual }} de {{ totalPaginas }}</p>
         </section>
 
-    </main>
+            <section class="secao">
+                <h2>Seu pedido</h2>
+
+                <barra-progresso valor="progressoFrete()" rotulo="Progresso para o frete grátis"></barra-progresso>
+
+                <p class="info" ng-if="faltaParaFrete() > 0">
+                    Faltam <strong class="destaque">{{ faltaParaFrete() | real }}</strong> para o frete grátis.
+                </p>
+                <p class="info destaque" ng-if="faltaParaFrete() === 0">
+                    Parabéns! Seu pedido tem frete grátis.
+                </p>
+
+                <ul class="carrinho" ng-if="carrinho.length > 0">
+                    <li ng-repeat="item in carrinho">
+                        <span>{{ item.nome }}</span>
+                        <span>
+                            {{ item.preco | real }}
+                            <button type="button" class="botao-fechar" ng-click="removerDoCarrinho($index)"
+                                aria-label="Remover item">✕</button>
+                        </span>
+                    </li>
+                </ul>
+
+                <p class="info" ng-if="carrinho.length === 0">
+                    Seu carrinho está vazio. Adicione pratos do cardápio.
+                </p>
+
+                <div class="carrinho__rodape" ng-if="carrinho.length > 0">
+                    <strong>Total: <span class="destaque">{{ totalCarrinho() | real }}</span></strong>
+                    <button type="button" class="botao-link" ng-click="limparCarrinho()">Limpar</button>
+                </div>
+            </section>
+
+            <section class="secao" ng-if="pratoSelecionado">
+                <div class="detalhe__topo">
+                    <h2>{{ pratoSelecionado.nome }}</h2>
+                    <button type="button" class="botao-fechar" ng-click="fecharDetalhes()"
+                        aria-label="Fechar detalhes">✕</button>
+                </div>
+
+                <abas itens="abasDoPrato"></abas>
+            </section>
+
+        </main>
+
+
 
     <footer class="rodape">
         <div class="container">
