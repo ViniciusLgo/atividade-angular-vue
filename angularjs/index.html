@@ -10,6 +10,7 @@
 
 <body>
 
+    <!-- topo do site -->
     <header class="cabecalho">
         <div class="container">
             <h1>Tempero <span>da Bahia</span></h1>
@@ -18,6 +19,7 @@
     </header>
 
     <main class="container" ng-controller="CardapioController">
+        <!-- cardapio com filtro e paginacao -->
         <section class="secao">
             <h2>Cardápio</h2>
 
@@ -52,6 +54,7 @@
         <p class="info">Página {{ paginaAtual }} de {{ totalPaginas }}</p>
         </section>
 
+            <!-- carrinho e barra do frete gratis -->
             <section class="secao">
                 <h2>Seu pedido</h2>
 
@@ -85,6 +88,7 @@
                 </div>
             </section>
 
+            <!-- detalhes do prato que foi clicado -->
             <section class="secao" ng-if="pratoSelecionado">
                 <div class="detalhe__topo">
                     <h2>{{ pratoSelecionado.nome }}</h2>
@@ -95,6 +99,7 @@
                 <abas itens="abasDoPrato"></abas>
             </section>
 
+                <!-- perguntas frequentes -->
                 <section class="secao">
             <h2>Perguntas frequentes</h2>
             <acordeao itens="faq"></acordeao>
@@ -104,14 +109,17 @@
 
 
 
+    <!-- rodape -->
     <footer class="rodape">
         <div class="container">
             <p>Atividade de AngularJS · Vinicius Lago Cruz</p>
         </div>
     </footer>
 
+    <!-- avisos que aparecem no canto -->
     <toasts></toasts>
 
+  <!-- o angular e os arquivos do site -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
     <script src="js/dados.js"></script>
     <script src="js/componentes.js"></script>

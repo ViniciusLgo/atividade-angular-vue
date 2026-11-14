@@ -1,3 +1,4 @@
+/* cores do site */
 :root {
   --fundo: #14110f;
   --caixa: #1f1b18;
@@ -114,17 +115,17 @@ input, select {
   font-size: 0.85rem;
 }
 
-/* Tablet 2 colunas */
+/* tablet: 2 colunas */
 @media (min-width: 600px) {
   .grade { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Desktop: 3 colunas */
+/* computador: 3 colunas */
 @media (min-width: 900px) {
   .grade { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Paginação */
+/* botoes de pagina */
 .paginacao {
   display: flex;
   flex-wrap: wrap;
@@ -159,7 +160,7 @@ input, select {
   cursor: not-allowed;
 }
 
-/*  Menu suspenso */
+/* filtro de categoria */
 .barra-filtro {
   display: flex;
   flex-wrap: wrap;
@@ -228,7 +229,7 @@ input, select {
   font-weight: 700;
 }
 
-/*  Botões do card */
+/* botoes dos cards */
 .botao-link {
   margin-top: 12px;
   background: transparent;
@@ -266,7 +267,7 @@ input, select {
 
 .botao-fechar:hover { color: var(--texto); border-color: var(--laranja); }
 
-/*  Abas  */
+/* abas do prato */
 .abas { margin-top: 16px; }
 
 .abas__titulos {
@@ -301,7 +302,7 @@ input, select {
   min-height: 70px;
 }
 
-/*  Botões do card  */
+/* botoes dos cards */
 .prato__botoes {
   display: flex;
   flex-wrap: wrap;
@@ -324,7 +325,7 @@ input, select {
 
 .botao-cheio:hover { background: #ffa033; border-color: #ffa033; }
 
-/*  Barra de progresso  */
+/* barra do frete gratis */
 .barra { margin-bottom: 14px; }
 
 .barra__topo {
@@ -354,7 +355,7 @@ input, select {
 
 .barra__preenchimento.completa { background: #2e9e63; }
 
-/*  Carrinho */
+/* carrinho */
 .carrinho {
   list-style: none;
   margin: 16px 0 0;
@@ -392,7 +393,7 @@ input, select {
 
 .carrinho__rodape .botao-link { margin-top: 0; }
 
-/* ===== Toasts ===== */
+/* avisos no canto da tela */
 .toasts {
   position: fixed;
   right: 16px;
@@ -449,7 +450,7 @@ input, select {
   }
 }
 
-/* ===== Acordeão ===== */
+/* perguntas frequentes */
 .acordeao__item {
   border-bottom: 1px solid var(--borda);
 }

@@ -1,5 +1,6 @@
 var componentes = angular.module('temperoApp.componentes', []);
 
+// botoes de paginacao do cardapio
 componentes.directive('paginacao', function () {
   return {
     restrict: 'E',
@@ -54,6 +55,7 @@ componentes.directive('paginacao', function () {
   };
 });
 
+// menu que abre pra escolher a categoria
 componentes.directive('menuSuspenso', function ($document) {
   return {
     restrict: 'E',
@@ -118,12 +120,13 @@ componentes.directive('menuSuspenso', function ($document) {
   };
 });
 
+// abas com os detalhes do prato
 componentes.directive('abas', function () {
   return {
     restrict: 'E',
 
     scope: {
-      itens: '='   // lista de abas
+      itens: '='   // as abas
     },
 
     template: `
@@ -147,14 +150,14 @@ componentes.directive('abas', function () {
 
     link: function (scope) {
 
-      // Começa na primeira aba.
+      // comeca na primeira
       scope.ativa = 0;
 
       scope.selecionar = function (indice) {
         scope.ativa = indice;
       };
 
-      // Se a lista trocar (outro prato), volta pra primeira aba.
+      // trocou de prato, volta pra primeira
       scope.$watch('itens', function () {
         scope.ativa = 0;
       });
@@ -164,13 +167,14 @@ componentes.directive('abas', function () {
 });
 
 
+// barra que mostra quanto falta pro frete gratis
 componentes.directive('barraProgresso', function () {
   return {
     restrict: 'E',
 
     scope: {
-      valor: '<',     // número de 0 a 100 (só entra)
-      rotulo: '@'     // texto fixo
+      valor: '<',     // de 0 a 100
+      rotulo: '@'     // texto do lado
     },
 
     template: `
@@ -194,6 +198,7 @@ componentes.directive('barraProgresso', function () {
   };
 });
 
+// avisos que aparecem no canto da tela
 componentes.directive('toasts', function (ToastService) {
   return {
     restrict: 'E',
@@ -217,11 +222,7 @@ componentes.directive('toasts', function (ToastService) {
     }
   };
 });
-/* ============================================================
-   6. ACORDEÃO (ACCORDION)
-   Uso: <acordeao itens="listaDePerguntas"></acordeao>
-   Cada item: { pergunta: '...', resposta: '...' }
-   ============================================================ */
+// perguntas que abrem e fecham
 componentes.directive('acordeao', function () {
   return {
     restrict: 'E',
@@ -253,11 +254,11 @@ componentes.directive('acordeao', function () {
 
     link: function (scope) {
 
-      // -1 = nenhum item aberto.
+      // -1 = nenhuma aberta
       scope.aberto = -1;
 
       scope.alternar = function (indice) {
-        // Clicou no que já estava aberto? Fecha. Senão, abre ele e fecha o outro.
+        // clicou na que ja estava aberta? fecha
         scope.aberto = (scope.aberto === indice) ? -1 : indice;
       };
 

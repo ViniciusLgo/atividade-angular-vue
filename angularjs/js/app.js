@@ -12,7 +12,7 @@ angular.module('temperoApp')
     $scope.categorias = CardapioService.categorias();
     $scope.categoria = 'Todos';
 
-    // Pratos que passam no filtro atual.
+    // pratos da categoria escolhida
     $scope.pratosFiltrados = function () {
       if ($scope.categoria === 'Todos') {
         return $scope.pratos;
@@ -27,7 +27,7 @@ angular.module('temperoApp')
     $scope.paginaAtual = 1;
     $scope.totalPaginas = 1;
 
-    // Recalcula as páginas e volta pra primeira.
+    // recalcula as paginas e volta pra primeira
     function recalcularPaginas() {
       var total = $scope.pratosFiltrados().length;
       $scope.totalPaginas = Math.ceil(total / $scope.porPagina) || 1;
@@ -43,7 +43,7 @@ angular.module('temperoApp')
       $scope.paginaAtual = pagina;
     };
 
-    // Callback do menu suspenso.
+    // quando escolhe uma categoria
     $scope.escolherCategoria = function (opcao) {
       $scope.categoria = opcao;
       recalcularPaginas();
@@ -53,7 +53,7 @@ angular.module('temperoApp')
     $scope.pratoSelecionado = null;
     $scope.abasDoPrato = [];
 
-    // Transforma a nota em estrelas: 4 -> ★★★★☆
+    // nota virando estrelas: 4 vira ★★★★☆
     function estrelas(nota) {
       return '★'.repeat(nota) + '☆'.repeat(5 - nota);
     }
@@ -106,18 +106,18 @@ angular.module('temperoApp')
       }, 0);
     };
 
-    // Quanto já foi, de 0 a 100.
+    // quanto ja foi, de 0 a 100
     $scope.progressoFrete = function () {
       var porcento = ($scope.totalCarrinho() / $scope.valorFreteGratis) * 100;
       return Math.min(Math.round(porcento), 100);
     };
 
-    // Quanto ainda falta em reais.
+    // quanto ainda falta em reais
     $scope.faltaParaFrete = function () {
       return Math.max($scope.valorFreteGratis - $scope.totalCarrinho(), 0);
     };
 
-    // Primeiro cálculo, ao abrir a página.
+    // roda uma vez quando abre a pagina
     recalcularPaginas();
 
   });

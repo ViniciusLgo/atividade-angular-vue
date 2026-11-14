@@ -61,7 +61,7 @@ dados.factory('ToastService', function ($timeout) {
     };
     lista.push(toast);
 
-    // Some sozinho depois de 3 segundos.
+    // some sozinho em 3 segundos
     $timeout(function () {
       fechar(toast.id);
     }, 3000);
@@ -76,7 +76,7 @@ dados.factory('ToastService', function ($timeout) {
   };
 
 });
-// Serviço com as perguntas frequentes.
+// perguntas frequentes do rodape
 dados.factory('FaqService', function () {
 
   var perguntas = [
