@@ -23,7 +23,7 @@
             <h2>Cardápio</h2>
 
             <div class="grade">
-                <article class="prato" ng-repeat="prato in pratos">
+                <article class="prato" ng-repeat="prato in pratosDaPagina()">
                     <span class="etiqueta">{{ prato.categoria }}</span>
                     <h3>{{ prato.nome }}</h3>
                     <p class="prato__desc">{{ prato.descricao }}</p>
@@ -31,7 +31,10 @@
                 </article>
             </div>
 
-            <p class="info">{{ pratos.length }} itens no cardápio</p>
+            <paginacao total-paginas="totalPaginas" pagina-atual="paginaAtual" ao-mudar="irParaPagina(pagina)">
+            </paginacao>
+
+            <p class="info">Página {{ paginaAtual }} de {{ totalPaginas }}</p>
         </section>
 
     </main>

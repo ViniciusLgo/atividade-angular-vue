@@ -123,3 +123,38 @@ input, select {
 @media (min-width: 900px) {
   .grade { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Paginação */
+.paginacao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.paginacao button {
+  background: var(--fundo);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.paginacao button:hover:not(:disabled) {
+  border-color: var(--laranja);
+}
+
+.paginacao button.ativa {
+  background: var(--laranja);
+  border-color: var(--laranja);
+  color: #14110f;
+  font-weight: 700;
+}
+
+.paginacao button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
