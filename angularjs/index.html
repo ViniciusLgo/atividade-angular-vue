@@ -27,6 +27,9 @@
                 <menu-suspenso rotulo="Categoria" opcoes="categorias" selecionada="categoria"
                     ao-escolher="escolherCategoria(opcao)"></menu-suspenso>
 
+                <input type="search" class="campo-busca" ng-model="busca" ng-change="aoBuscar()"
+                    placeholder="Buscar prato...">
+
                 <span class="info">{{ pratosFiltrados().length }} itens</span>
             </div>
 
@@ -119,11 +122,29 @@
     <!-- avisos que aparecem no canto -->
     <toasts></toasts>
 
-  <!-- o angular e os arquivos do site -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
-    <script src="js/dados.js"></script>
-    <script src="js/componentes.js"></script>
-    <script src="js/app.js"></script>
+
+  <!-- os modulos -->
+  <script src="js/dados/dados.module.js"></script>
+  <script src="js/componentes/componentes.module.js"></script>
+
+  <!-- servicos e filtro -->
+  <script src="js/dados/cardapio.service.js"></script>
+  <script src="js/dados/real.filter.js"></script>
+  <script src="js/dados/toast.service.js"></script>
+  <script src="js/dados/faq.service.js"></script>
+
+  <!-- um arquivo pra cada componente -->
+  <script src="js/componentes/paginacao.js"></script>
+  <script src="js/componentes/menu-suspenso.js"></script>
+  <script src="js/componentes/abas.js"></script>
+  <script src="js/componentes/barra-progresso.js"></script>
+  <script src="js/componentes/toasts.js"></script>
+  <script src="js/componentes/acordeao.js"></script>
+
+  <!-- o app e o controller -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers/cardapio.controller.js"></script>
 </body>
 
 </html>

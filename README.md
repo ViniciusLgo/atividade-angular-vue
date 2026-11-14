@@ -27,12 +27,26 @@ Aluno: Vinicius Lago Cruz
 
 ```
 angularjs/
-├── index.html
-├── style.css
-└── js/
-    ├── dados.js        servicos e filtro
-    ├── componentes.js  as 6 diretivas
-    └── app.js          modulo principal e controller
+|-- index.html
+|-- style.css
+`-- js/
+    |-- app.js                      modulo principal
+    |-- controllers/
+    |   `-- cardapio.controller.js
+    |-- dados/                      servicos e filtro
+    |   |-- dados.module.js
+    |   |-- cardapio.service.js
+    |   |-- real.filter.js
+    |   |-- toast.service.js
+    |   `-- faq.service.js
+    `-- componentes/                um arquivo por componente
+        |-- componentes.module.js
+        |-- paginacao.js
+        |-- menu-suspenso.js
+        |-- abas.js
+        |-- barra-progresso.js
+        |-- toasts.js
+        `-- acordeao.js
 ```
 
 ## Módulos

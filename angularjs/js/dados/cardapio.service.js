@@ -1,8 +1,4 @@
-
-
-var dados = angular.module('temperoApp.dados', []);
-
-dados.factory('CardapioService', function () {
+angular.module('temperoApp.dados').factory('CardapioService', function () {
 
   var pratos = [
     { id: 1,  nome: 'Moqueca de peixe',  categoria: 'Pratos',     preco: 68.90, descricao: 'Peixe cozido no leite de coco com dendê, pimentão e coentro.', ingredientes: 'Robalo, leite de coco, azeite de dendê, pimentão, tomate, coentro.', avaliacao: 5, comentario: 'A melhor moqueca que já comi fora de Itaparica.' },
@@ -27,89 +23,4 @@ dados.factory('CardapioService', function () {
       return ['Todos', 'Pratos', 'Petiscos', 'Bebidas', 'Sobremesas'];
     }
   };
-});
-
-dados.filter('real', function () {
-  return function (valor) {
-    if (valor === undefined || valor === null) {
-      return '';
-    }
-    return 'R$ ' + valor.toFixed(2).replace('.', ',');
-  };
-});
-
-// Serviço de notificações.
-dados.factory('ToastService', function ($timeout) {
-
-  var lista = [];
-  var proximoId = 1;
-
-  function fechar(id) {
-    for (var i = 0; i < lista.length; i++) {
-      if (lista[i].id === id) {
-        lista.splice(i, 1);
-        return;
-      }
-    }
-  }
-
-  function mostrar(mensagem, tipo) {
-    var toast = {
-      id: proximoId++,
-      mensagem: mensagem,
-      tipo: tipo
-    };
-    lista.push(toast);
-
-    // some sozinho em 3 segundos
-    $timeout(function () {
-      fechar(toast.id);
-    }, 3000);
-  }
-
-  return {
-    lista: lista,
-    sucesso: function (mensagem) { mostrar(mensagem, 'sucesso'); },
-    erro:    function (mensagem) { mostrar(mensagem, 'erro'); },
-    info:    function (mensagem) { mostrar(mensagem, 'info'); },
-    fechar:  fechar
-  };
-
-});
-// perguntas frequentes do rodape
-dados.factory('FaqService', function () {
-
-  var perguntas = [
-    {
-      pergunta: 'Qual o tempo médio de entrega?',
-      resposta: 'Entre 40 e 60 minutos para bairros próximos. Em horário de pico, pode chegar a 90 minutos.'
-    },
-    {
-      pergunta: 'Vocês entregam em qual região?',
-      resposta: 'Atendemos toda a orla e o centro, num raio de 12 km da cozinha. Fora disso, só retirada no balcão.'
-    },
-    {
-      pergunta: 'Quais formas de pagamento vocês aceitam?',
-      resposta: 'Pix, cartão de crédito, cartão de débito e dinheiro. O pagamento é feito na entrega.'
-    },
-    {
-      pergunta: 'Como funciona o frete grátis?',
-      resposta: 'Pedidos a partir de R$ 90,00 têm entrega gratuita. A barra no topo do seu pedido mostra quanto falta.'
-    },
-    {
-      pergunta: 'Os pratos levam dendê?',
-      resposta: 'A maioria dos pratos tradicionais leva azeite de dendê. Na aba Ingredientes de cada prato você confere a lista completa.'
-    },
-    {
-      pergunta: 'Posso cancelar um pedido?',
-      resposta: 'Sim, desde que a cozinha ainda não tenha começado o preparo. É só ligar para a loja em até 5 minutos.'
-    }
-  ];
-
-  return {
-    listar: function () {
-      return perguntas;
-    }
-  };
-
 });
