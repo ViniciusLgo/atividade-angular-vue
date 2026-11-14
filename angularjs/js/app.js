@@ -5,8 +5,9 @@ angular.module('temperoApp', [
 ]);
 
 angular.module('temperoApp')
-  .controller('CardapioController', function ($scope, CardapioService, ToastService) {
+  .controller('CardapioController', function ($scope, CardapioService, ToastService, FaqService) {
     $scope.pratos = CardapioService.listar();
+    $scope.faq = FaqService.listar();
 
     $scope.categorias = CardapioService.categorias();
     $scope.categoria = 'Todos';

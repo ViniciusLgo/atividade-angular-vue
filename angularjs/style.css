@@ -448,3 +448,56 @@ input, select {
     max-width: none;
   }
 }
+
+/* ===== Acordeão ===== */
+.acordeao__item {
+  border-bottom: 1px solid var(--borda);
+}
+
+.acordeao__titulo {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.acordeao__titulo button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--texto);
+  border: 0;
+  padding: 16px 2px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.acordeao__titulo button:hover { color: var(--laranja); }
+
+.acordeao__sinal {
+  color: var(--laranja);
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.acordeao__sinal.girado { transform: rotate(180deg); }
+
+.acordeao__corpo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.acordeao__corpo.aberto { max-height: 300px; }
+
+.acordeao__corpo p {
+  margin: 0;
+  padding: 0 2px 18px;
+  color: var(--fraco);
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
