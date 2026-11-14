@@ -18,9 +18,15 @@
     </header>
 
     <main class="container" ng-controller="CardapioController">
-
         <section class="secao">
             <h2>Cardápio</h2>
+
+            <div class="barra-filtro">
+                <menu-suspenso rotulo="Categoria" opcoes="categorias" selecionada="categoria"
+                    ao-escolher="escolherCategoria(opcao)"></menu-suspenso>
+
+                <span class="info">{{ pratosFiltrados().length }} itens</span>
+            </div>
 
             <div class="grade">
                 <article class="prato" ng-repeat="prato in pratosDaPagina()">

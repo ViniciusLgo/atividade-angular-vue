@@ -1,5 +1,3 @@
-angular.module('temperoApp.componentes', []);
-
 var componentes = angular.module('temperoApp.componentes', []);
 
 componentes.directive('paginacao', function () {
@@ -7,9 +5,9 @@ componentes.directive('paginacao', function () {
     restrict: 'E',
 
     scope: {
-      totalPaginas: '=',   // número total de paginas
-      paginaAtual: '=',    // página que está aberta
-      aoMudar: '&'         // função chamada ao trocar de página
+      totalPaginas: '=',
+      paginaAtual: '=',
+      aoMudar: '&'
     },
 
     template: `
@@ -23,8 +21,7 @@ componentes.directive('paginacao', function () {
         <button type="button"
                 ng-repeat="n in paginas()"
                 ng-click="mudar(n)"
-                ng-class="{ 'ativa': n === paginaAtual }"
-                aria-current="{{ n === paginaAtual ? 'page' : 'false' }}">
+                ng-class="{ 'ativa': n === paginaAtual }">
           {{ n }}
         </button>
 
@@ -52,6 +49,70 @@ componentes.directive('paginacao', function () {
         }
         scope.aoMudar({ pagina: pagina });
       };
+
+    }
+  };
+});
+
+componentes.directive('menuSuspenso', function ($document) {
+  return {
+    restrict: 'E',
+
+    scope: {
+      rotulo: '@',
+      opcoes: '=',
+      selecionada: '=',
+      aoEscolher: '&'
+    },
+
+    template: `
+      <div class="dropdown">
+        <button type="button" class="dropdown__botao"
+                ng-click="alternar()"
+                aria-haspopup="true"
+                aria-expanded="{{ aberto }}">
+          {{ rotulo }}: <strong>{{ selecionada }}</strong>
+          <span class="dropdown__seta" ng-class="{ 'girada': aberto }">▾</span>
+        </button>
+
+        <ul class="dropdown__lista" ng-show="aberto">
+          <li ng-repeat="opcao in opcoes">
+            <button type="button"
+                    ng-click="escolher(opcao)"
+                    ng-class="{ 'ativa': opcao === selecionada }">
+              {{ opcao }}
+            </button>
+          </li>
+        </ul>
+      </div>
+    `,
+
+    link: function (scope, element) {
+
+      scope.aberto = false;
+
+      scope.alternar = function () {
+        scope.aberto = !scope.aberto;
+      };
+
+      scope.escolher = function (opcao) {
+        scope.aberto = false;
+        scope.aoEscolher({ opcao: opcao });
+      };
+
+      function cliqueFora(evento) {
+        if (!element[0].contains(evento.target)) {
+          scope.$apply(function () {
+            scope.aberto = false;
+          });
+        }
+      }
+
+      $document.on('click', cliqueFora);
+
+      scope.$on('$destroy', function () {
+        $document.off('click', cliqueFora);
+      });
 
     }
   };
