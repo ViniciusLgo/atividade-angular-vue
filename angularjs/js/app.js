@@ -1,11 +1,11 @@
+
 angular.module('temperoApp', [
   'temperoApp.dados',
   'temperoApp.componentes'
 ]);
 
 angular.module('temperoApp')
-  .controller('CardapioController', function ($scope, CardapioService) {
-
+  .controller('CardapioController', function ($scope, CardapioService, ToastService) {
     $scope.pratos = CardapioService.listar();
 
     $scope.categorias = CardapioService.categorias();
@@ -70,23 +70,35 @@ angular.module('temperoApp')
       $scope.pratoSelecionado = null;
     };
 
-        //  Carrinho e frete grátis 
+    //  Carrinho e frete grátis 
     $scope.valorFreteGratis = 90;
     $scope.carrinho = [];
 
     $scope.adicionar = function (prato) {
       $scope.carrinho.push(prato);
+
+      if ($scope.faltaParaFrete() === 0) {
+        ToastService.sucesso('Frete grátis liberado!');
+      } else {
+        ToastService.info(prato.nome + ' adicionado ao pedido');
+      }
     };
 
     $scope.removerDoCarrinho = function (indice) {
+      var prato = $scope.carrinho[indice];
       $scope.carrinho.splice(indice, 1);
+      ToastService.erro(prato.nome + ' removido do pedido');
     };
 
     $scope.limparCarrinho = function () {
+      if ($scope.carrinho.length === 0) {
+        ToastService.erro('Seu pedido já está vazio');
+        return;
+      }
       $scope.carrinho = [];
+      ToastService.info('Pedido esvaziado');
     };
 
-    // Soma dos preços do carrinho.
     $scope.totalCarrinho = function () {
       return $scope.carrinho.reduce(function (soma, prato) {
         return soma + prato.preco;
